@@ -8,6 +8,25 @@
 
 [MIT License](LICENSE)
 
+## Project screenshots
+
+**Architecture workbench** — start with a sketch or a built-in scenario.
+
+![NapkinCloud homepage with its architecture flow](docs/screenshots/01-home.jpg)
+
+**Built-in scenarios** — launch traffic, shared workspaces, and background writes.
+
+![NapkinCloud scenario picker showing three executable architecture examples](docs/screenshots/02-scenarios.jpg)
+
+<details>
+<summary>View the traffic-testing workspace</summary>
+
+A local simulation of the shared-workspace surge, showing the original architecture, failed requests, latency, and editable assumptions. Meta is unconfigured in this capture; the After panel awaits generation.
+
+![NapkinCloud traffic test showing baseline metrics and workload controls](docs/screenshots/03-traffic-test.jpg)
+
+</details>
+
 A live website requires a running backend; GitHub Pages by itself cannot execute secret-backed model calls.
 
 ## About
