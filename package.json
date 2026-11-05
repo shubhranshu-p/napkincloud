@@ -1,0 +1,20 @@
+{
+  "name": "napkincloud",
+  "version": "0.7.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test test/*.test.mjs",
+    "build": "node scripts/compile.mjs && bash scripts/build.sh && node scripts/validate-artifact.mjs",
+    "start": "node scripts/dev.mjs",
+    "check": "node scripts/check.mjs",
+    "release": "node scripts/prepare-release.mjs",
+    "build:pages": "node scripts/build-pages.mjs"
+  },
+  "description": "Sketch, simulate, and verify backend architecture improvements with Meta.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  }
+}

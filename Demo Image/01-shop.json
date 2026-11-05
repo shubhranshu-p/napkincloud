@@ -1,0 +1,146 @@
+{
+  "graph": {
+    "routingVersion": 2,
+    "title": "Relay · Launch traffic",
+    "source": "example",
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Web clients",
+        "type": "client",
+        "x": 25,
+        "y": 310,
+        "w": 160,
+        "h": 100,
+        "capacity": 10000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "gateway",
+        "label": "API gateway",
+        "type": "gateway",
+        "x": 220,
+        "y": 310,
+        "w": 160,
+        "h": 100,
+        "capacity": 12000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "api",
+        "label": "Relay API",
+        "type": "api",
+        "x": 420,
+        "y": 310,
+        "w": 160,
+        "h": 100,
+        "capacity": 6000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "reads",
+        "label": "Project service",
+        "type": "service",
+        "x": 630,
+        "y": 120,
+        "w": 160,
+        "h": 100,
+        "capacity": 6000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "queue",
+        "label": "Write queue",
+        "type": "queue",
+        "x": 420,
+        "y": 570,
+        "w": 160,
+        "h": 100,
+        "capacity": 10000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "worker",
+        "label": "Sync worker",
+        "type": "worker",
+        "x": 650,
+        "y": 570,
+        "w": 160,
+        "h": 100,
+        "capacity": 6000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "type": "postgres",
+        "x": 855,
+        "y": 310,
+        "w": 150,
+        "h": 120,
+        "capacity": 600,
+        "concurrency": 6,
+        "replicas": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "client",
+        "to": "gateway"
+      },
+      {
+        "from": "gateway",
+        "to": "api"
+      },
+      {
+        "from": "api",
+        "to": "reads",
+        "when": "read"
+      },
+      {
+        "from": "reads",
+        "to": "db",
+        "when": "read"
+      },
+      {
+        "from": "api",
+        "to": "queue",
+        "when": "write"
+      },
+      {
+        "from": "queue",
+        "to": "worker",
+        "when": "write"
+      },
+      {
+        "from": "worker",
+        "to": "db",
+        "when": "write"
+      }
+    ],
+    "uncertainties": [],
+    "corrections": []
+  },
+  "workload": {
+    "scenario": "launch",
+    "baseRps": 120,
+    "peakRps": 3000,
+    "duration": 20,
+    "readRatio": 0.9,
+    "cacheHitRatio": 0.97,
+    "coldStart": false,
+    "dbSlowdown": 1,
+    "partitionSkew": 0,
+    "queueLimit": 128,
+    "deadlineMs": 1000,
+    "p95TargetMs": 300,
+    "minSuccessRate": 0.99,
+    "seed": 42
+  }
+}

@@ -1,0 +1,30 @@
+dist/
+site.tar.gz
+.env
+.env.*
+!.env.example
+.local/
+worker/index.js
+
+node_modules/
+.dev.vars
+.dev.vars.*
+.wrangler/
+.DS_Store
+*.log
+*.zip
+coverage/
+releases/
+pages/
+
+# Private local workspace state
+.git/
+.openai/
+.codex/
+.agents/
+*.tar.gz
+
+# Demo recording is submitted separately
+media/
+*.mov
+*.mp4

@@ -1,0 +1,73 @@
+{
+  "graph": {
+    "title": "Simple starter",
+    "source": "example",
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Customers",
+        "type": "client",
+        "x": 70,
+        "y": 340,
+        "w": 210,
+        "h": 150,
+        "capacity": 10000,
+        "concurrency": 1,
+        "replicas": 1
+      },
+      {
+        "id": "api",
+        "label": "Shop API",
+        "type": "api",
+        "x": 390,
+        "y": 340,
+        "w": 210,
+        "h": 150,
+        "capacity": 5000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "type": "postgres",
+        "x": 720,
+        "y": 340,
+        "w": 210,
+        "h": 150,
+        "capacity": 600,
+        "concurrency": 6,
+        "replicas": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "client",
+        "to": "api"
+      },
+      {
+        "from": "api",
+        "to": "db"
+      }
+    ],
+    "uncertainties": [],
+    "routingVersion": 2,
+    "corrections": []
+  },
+  "workload": {
+    "scenario": "launch",
+    "baseRps": 120,
+    "peakRps": 3000,
+    "duration": 20,
+    "readRatio": 0.9,
+    "cacheHitRatio": 0.97,
+    "coldStart": false,
+    "dbSlowdown": 1,
+    "partitionSkew": 0,
+    "queueLimit": 128,
+    "deadlineMs": 1000,
+    "p95TargetMs": 300,
+    "minSuccessRate": 0.99,
+    "seed": 42
+  }
+}

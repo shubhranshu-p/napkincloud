@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "napkincloud",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-01",
+  "build": { "command": "node scripts/compile.mjs" },
+  "observability": { "enabled": true }
+}

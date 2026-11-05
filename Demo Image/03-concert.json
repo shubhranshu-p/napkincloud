@@ -1,0 +1,163 @@
+{
+  "graph": {
+    "routingVersion": 2,
+    "title": "Relay · Sync & background writes",
+    "source": "example",
+    "nodes": [
+      {
+        "id": "client",
+        "label": "Sync clients",
+        "type": "client",
+        "x": 25,
+        "y": 310,
+        "w": 160,
+        "h": 100,
+        "capacity": 10000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "gateway",
+        "label": "Gateway",
+        "type": "gateway",
+        "x": 220,
+        "y": 310,
+        "w": 160,
+        "h": 100,
+        "capacity": 12000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "api",
+        "label": "Import API",
+        "type": "api",
+        "x": 420,
+        "y": 310,
+        "w": 160,
+        "h": 100,
+        "capacity": 6000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "queue",
+        "label": "Import queue",
+        "type": "queue",
+        "x": 220,
+        "y": 570,
+        "w": 160,
+        "h": 100,
+        "capacity": 10000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "validator",
+        "label": "Validation",
+        "type": "service",
+        "x": 420,
+        "y": 570,
+        "w": 160,
+        "h": 100,
+        "capacity": 7000,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "worker",
+        "label": "Write worker",
+        "type": "worker",
+        "x": 620,
+        "y": 570,
+        "w": 160,
+        "h": 100,
+        "capacity": 6500,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "audit",
+        "label": "Audit service",
+        "type": "service",
+        "x": 820,
+        "y": 570,
+        "w": 160,
+        "h": 100,
+        "capacity": 6500,
+        "concurrency": 20,
+        "replicas": 1
+      },
+      {
+        "id": "db",
+        "label": "PostgreSQL",
+        "type": "postgres",
+        "x": 855,
+        "y": 310,
+        "w": 150,
+        "h": 120,
+        "capacity": 600,
+        "concurrency": 6,
+        "replicas": 1
+      }
+    ],
+    "edges": [
+      {
+        "from": "client",
+        "to": "gateway"
+      },
+      {
+        "from": "gateway",
+        "to": "api"
+      },
+      {
+        "from": "api",
+        "to": "db",
+        "when": "read"
+      },
+      {
+        "from": "api",
+        "to": "queue",
+        "when": "write"
+      },
+      {
+        "from": "queue",
+        "to": "validator",
+        "when": "write"
+      },
+      {
+        "from": "validator",
+        "to": "worker",
+        "when": "write"
+      },
+      {
+        "from": "worker",
+        "to": "audit",
+        "when": "write"
+      },
+      {
+        "from": "audit",
+        "to": "db",
+        "when": "write"
+      }
+    ],
+    "uncertainties": [],
+    "corrections": []
+  },
+  "workload": {
+    "scenario": "writes",
+    "baseRps": 120,
+    "peakRps": 2800,
+    "duration": 20,
+    "readRatio": 0.2,
+    "cacheHitRatio": 0.95,
+    "coldStart": false,
+    "dbSlowdown": 1,
+    "partitionSkew": 0,
+    "queueLimit": 128,
+    "deadlineMs": 1000,
+    "p95TargetMs": 300,
+    "minSuccessRate": 0.99,
+    "seed": 42
+  }
+}
