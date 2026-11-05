@@ -4,7 +4,7 @@
 
 [![Checks](https://github.com/shubhranshu-p/napkincloud/actions/workflows/ci.yml/badge.svg)](https://github.com/shubhranshu-p/napkincloud/actions/workflows/ci.yml)
 
-**[Watch the demo](https://x.com/Shubhranshu_ssp/status/2118161004114870626)** · [How it works](docs/ARCHITECTURE.md) · [Run locally](#run-in-two-minutes) · [Publish on GitHub Pages](docs/GITHUB-PAGES.md) · [Three-minute demo guide](docs/DEMO-VIDEO.md)
+**[Watch the demo](https://youtu.be/WKyKA6PkrjU?si=b4RXW4s0yE1fwBxE)** · [How it works](docs/ARCHITECTURE.md) · [Run locally](#run-in-two-minutes) · [Publish on GitHub Pages](docs/GITHUB-PAGES.md) · [Three-minute demo guide](docs/DEMO-VIDEO.md)
 
 [MIT License](LICENSE)
 
